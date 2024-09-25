@@ -30,7 +30,7 @@ RUN apt-get update \
     && for t in deb deb-src; do \
     echo "$t http://apt.postgresql.org/pub/repos/apt/ ${VERSION_CODENAME}-pgdg main" >> /etc/apt/sources.list.d/pgdg.list; \
     done \
-    && curl -s -o - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+    && curl -s https://www.postgresql.org/media/keys/ACCC4CF8.asc -o /etc/apt/trusted.gpg.d/postgresql.asc
 
 # Some tools that are not strictly required for running PostgreSQL, but have a tiny
 # footprint and can be very valuable when troubleshooting a running container,
