@@ -205,6 +205,9 @@ RUN if [ ! -z "${CI_JOB_TOKEN}" -a -z "${OSS_ONLY}" -a ! -z "${TIMESCALE_TSDB_AD
 # Install pg-cron
 RUN git clone https://github.com/citusdata/pg_cron.git && cd pg_cron && git checkout v1.4.2 && export PATH=/usr/lib/postgresql/11/bin:$PATH && make && PATH=$PATH make install
 
+# Install pgvector
+RUN git clone --branch v0.5.1 https://github.com/pgvector/pgvector.git && cd pgvector && export PATH=/usr/lib/postgresql/11/bin:$PATH && make && PATH=$PATH make install
+
 ## Cleanup
 RUN apt-get remove -y ${BUILD_PACKAGES}
 RUN apt-get autoremove -y \
